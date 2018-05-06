@@ -1,0 +1,6 @@
+{
+  "extends": ["tslint-config-blvd/react"],
+  "rules": {
+    "linebreak-style": [false]
+  }
+}
