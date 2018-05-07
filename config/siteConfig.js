@@ -7,7 +7,7 @@
  * @property {'internal' | 'external'} linkType
  */
 
-exports.siteConfig = {
+exports.config = {
   title: 'Casper',
   description: 'The default theme of Ghost, ported to GatsbyJS.',
   siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',

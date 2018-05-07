@@ -1,15 +1,15 @@
 'use strict'
 
-const { siteConfig } = require('./config/siteConfig')
+const { config } = require('./config/siteConfig')
 
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
 
 module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteUrl: siteConfig.siteUrl + pathPrefix,
+    title: config.title,
+    description: config.description,
+    siteUrl: config.siteUrl + pathPrefix,
     author: {
       name: 'Resi Respati',
       url: 'https://twitter.com/resir014',
@@ -52,7 +52,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: siteConfig.siteUrl + pathPrefix
+        siteUrl: config.siteUrl + pathPrefix
       }
     },
     'gatsby-plugin-emotion',

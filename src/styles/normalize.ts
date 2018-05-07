@@ -1,5 +1,5 @@
 import { injectGlobal } from 'react-emotion'
-import { colors } from './variables'
+import { colors, fonts } from './variables'
 import { lighten, darken } from 'polished'
 
 // tslint:disable-next-line:no-unused-expression
@@ -18,8 +18,7 @@ html {
 body {
   overflow-x: hidden;
   color: ${darken(0.25, colors.midgrey)};
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-    'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: ${fonts.sansSerif};
   font-size: 1.5rem;
   line-height: 1.6em;
   font-weight: 400;

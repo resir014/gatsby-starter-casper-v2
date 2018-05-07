@@ -84,10 +84,14 @@ const Footer: React.SFC<FooterProps> = ({ title, menuItems, className }) => (
         <FooterNav>
           {menuItems.map(item => {
             if (item.linkType === 'internal') {
-              return <Link to={item.link}>{item.name}</Link>
+              return (
+                <Link key={item.link} to={item.link}>
+                  {item.name}
+                </Link>
+              )
             } else {
               return (
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <a key={item.link} href={item.link} target="_blank" rel="noopener noreferrer">
                   {item.name}
                 </a>
               )
