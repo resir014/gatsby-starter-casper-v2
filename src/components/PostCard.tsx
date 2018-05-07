@@ -100,11 +100,20 @@ const Meta = styled('footer')`
   padding: 0 25px 25px;
 `
 
-const Author = styled('div')`
-  display: inline-block;
+const Author = styled(Link)`
+  flex: 1;
   position: relative;
   margin: 0;
   padding: 0;
+
+  img {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
 `
 
 const AuthorProfileWrapper = css`
@@ -115,14 +124,13 @@ const AuthorProfileWrapper = css`
   object-fit: cover;
 `
 
-const StaticAvatar = styled(Link)`
-  display: block;
-  height: 34px;
-  width: 34px;
-  border: #fff 2px solid;
-  margin: 0 -5px;
-  border-radius: 100%;
-  overflow: hidden;
+const AuthorName = styled('span')`
+  color: ${colors.darkgrey};
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  vertical-align: middle;
 `
 
 const ReadingTime = styled('span')`
@@ -134,6 +142,7 @@ const ReadingTime = styled('span')`
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  vertical-align: middle;
 `
 
 interface PostCardProps {
@@ -165,13 +174,12 @@ const PostCard: React.SFC<PostCardProps> = ({ post, className }) => (
         </Excerpt>
       </ContentLink>
       <Meta>
-        <Author>
-          <StaticAvatar to={post.frontmatter.author.fields.slug}>
-            <img
-              className={AuthorProfileWrapper}
-              src={post.frontmatter.author.avatar.childImageSharp.resolutions.src}
-            />
-          </StaticAvatar>
+        <Author to={post.frontmatter.author.fields.slug}>
+          <img
+            className={AuthorProfileWrapper}
+            src={post.frontmatter.author.avatar.childImageSharp.resolutions.src}
+          />
+          <AuthorName>{post.frontmatter.author.id}</AuthorName>
         </Author>
         <ReadingTime>{post.timeToRead} min read</ReadingTime>
       </Meta>
