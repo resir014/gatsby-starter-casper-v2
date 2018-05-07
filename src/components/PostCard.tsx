@@ -105,36 +105,6 @@ const Author = styled('div')`
   position: relative;
   margin: 0;
   padding: 0;
-
-  & .tooltip {
-    position: absolute;
-    bottom: 105%;
-    z-index: 999;
-    display: block;
-    padding: 2px 8px;
-    color: white;
-    font-size: 1.2rem;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-    background: ${colors.darkgrey};
-    border-radius: 3px;
-    box-shadow: rgba(39, 44, 49, 0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    transform: translateY(6px);
-    pointer-events: none;
-
-    @media (max-width: 650px) {
-      display: none;
-    }
-  }
-
-  &:hover {
-    & .tooltip {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
 `
 
 const AuthorProfileWrapper = css`
@@ -197,7 +167,6 @@ const PostCard: React.SFC<PostCardProps> = ({ post, className }) => (
       <Meta>
         <Author>
           <StaticAvatar to={post.frontmatter.author.fields.slug}>
-            <div className="tooltip">{post.frontmatter.author.id}</div>
             <img
               className={AuthorProfileWrapper}
               src={post.frontmatter.author.avatar.childImageSharp.resolutions.src}
