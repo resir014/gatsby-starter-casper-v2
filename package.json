@@ -29,6 +29,7 @@
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
     "gatsby": "^1.9.259",
+    "gatsby-image": "^1.0.51",
     "gatsby-link": "^1.6.44",
     "gatsby-plugin-canonical-urls": "^1.0.18",
     "gatsby-plugin-emotion": "^1.1.16",

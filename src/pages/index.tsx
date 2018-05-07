@@ -35,7 +35,9 @@ const IndexPage: React.SFC<IndexPageProps> = ({ data }) => (
     <LayoutMain>
       <PostFeed>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <PostCard key={node.fields.slug}>{node.frontmatter.title}</PostCard>
+          <PostCard key={node.fields.slug} post={node}>
+            {node.frontmatter.title}
+          </PostCard>
         ))}
       </PostFeed>
     </LayoutMain>
@@ -62,10 +64,20 @@ export const query = graphql`
           fields {
             date
             dateFormatted: date(formatString: "MMMM DD, YYYY")
+            category
             slug
           }
           frontmatter {
             title
+            image {
+              childImageSharp {
+                # Specify the image processing specifications right in the query.
+                # Makes it trivial to update as your page's design changes.
+                resolutions(width: 1400, height: 935) {
+                  ...GatsbyImageSharpResolutions
+                }
+              }
+            }
           }
         }
       }

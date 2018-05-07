@@ -16,7 +16,7 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   // trip up. An empty string is still required in replacement to `null`.
 
   if (node.internal.type === 'MarkdownRemark') {
-    const { permalink, layout, date } = node.frontmatter
+    const { permalink, layout, category, date } = node.frontmatter
     const relativePath = createFilePath({ node, getNode, basePath: 'content' })
 
     let slug = permalink
@@ -41,6 +41,13 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
           node,
           name: 'date',
           value: pubDate.toJSON()
+        })
+
+        // Used to generate URL to view this content.
+        createNodeField({
+          node,
+          name: 'category',
+          value: category || ''
         })
       }
     }
