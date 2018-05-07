@@ -1,0 +1,14 @@
+[
+  {
+    "id": "Gatsby",
+    "bio": "Blazing fast static-site generator for React.",
+    "avatar": "avatars/gatsby.jpg",
+    "twitter": "gatsbyjs"
+  },
+  {
+    "id": "Resi Respati",
+    "bio": "Fake developer.",
+    "avatar": "avatars/gatsby.jpg",
+    "twitter": "resir014"
+  }
+]

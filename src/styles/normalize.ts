@@ -59,6 +59,7 @@ a {
 }
 
 img {
+  max-width: 100%;
   border: 0;
 }
 

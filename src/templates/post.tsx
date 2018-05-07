@@ -68,6 +68,21 @@ export const query = graphql`
       excerpt
       frontmatter {
         title
+        author {
+          id
+          bio
+          twitter
+          avatar {
+            childImageSharp {
+              resolutions(width: 400, height: 400) {
+                src
+              }
+            }
+          }
+          fields {
+            slug
+          }
+        }
       }
     }
   }

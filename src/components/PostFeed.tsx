@@ -8,6 +8,10 @@ const PostFeedWrapper = styled('div')`
   margin: 0 -20px;
   padding: 40px 0 0 0;
 
+  @media (max-width: 650px) {
+    padding-top: 5vw;
+  }
+
   @media (min-width: 900px) {
     margin-top: -70px;
     padding-top: 0;

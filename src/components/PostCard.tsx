@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 
 import { ArticleNode } from '../types/nodes'
 import { colors } from '../styles/variables'
+import { lighten } from 'polished'
 
 const PostCardWrapper = styled('article')`
   flex: 1 1 300px;
@@ -23,7 +24,14 @@ const PostCardWrapper = styled('article')`
     box-shadow: rgba(39, 44, 49, 0.07) 8px 28px 50px, rgba(39, 44, 49, 0.04) 1px 6px 12px;
     transition: all 0.4s ease;
     transform: translate3D(0, -1px, 0) scale(1.02);
-    text-decoration: none;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 650px) {
+    margin: 0 20px 5vw;
   }
 `
 
@@ -53,6 +61,7 @@ const ContentLink = styled(Link)`
   display: block;
   padding: 25px 25px 0;
   color: ${colors.darkgrey};
+  text-decoration: none;
 
   &:hover {
     text-decoration: none;
@@ -70,12 +79,99 @@ const Category = styled('span')`
   text-transform: uppercase;
 `
 
+const Title = styled('h2')`
+  margin-top: 0;
+`
+
+const Content = styled('div')`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+const Excerpt = styled('section')`
+  font-family: Georgia, serif;
+`
+
+const Meta = styled('footer')`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 25px 25px;
+`
+
+const Author = styled('div')`
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  & .tooltip {
+    position: absolute;
+    bottom: 105%;
+    z-index: 999;
+    display: block;
+    padding: 2px 8px;
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    background: ${colors.darkgrey};
+    border-radius: 3px;
+    box-shadow: rgba(39, 44, 49, 0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    transform: translateY(6px);
+    pointer-events: none;
+
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+
+  &:hover {
+    & .tooltip {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+`
+
+const AuthorProfileWrapper = css`
+  display: block;
+  background: ${lighten(0.1, colors.lightgrey)};
+  border-radius: 100%;
+
+  object-fit: cover;
+`
+
+const StaticAvatar = styled(Link)`
+  display: block;
+  height: 34px;
+  width: 34px;
+  border: #fff 2px solid;
+  margin: 0 -5px;
+  border-radius: 100%;
+  overflow: hidden;
+`
+
+const ReadingTime = styled('span')`
+  flex-shrink: 0;
+  margin-left: 20px;
+  color: ${colors.midgrey};
+  font-size: 1.2rem;
+  line-height: 33px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+`
+
 interface PostCardProps {
   className?: string
   post: ArticleNode
 }
 
-const PostCard: React.SFC<PostCardProps> = ({ children, post, className }) => (
+const PostCard: React.SFC<PostCardProps> = ({ post, className }) => (
   <PostCardWrapper className={className}>
     <ImageLink to={post.fields.slug}>
       <Img
@@ -89,11 +185,28 @@ const PostCard: React.SFC<PostCardProps> = ({ children, post, className }) => (
         }}
         resolutions={post.frontmatter.image.childImageSharp.resolutions}
       />
+    </ImageLink>
+    <Content>
       <ContentLink to={post.fields.slug}>
         {post.fields.category && <Category>{post.fields.category}</Category>}
-        {children}
+        <Title>{post.frontmatter.title}</Title>
+        <Excerpt>
+          <p>{post.excerpt}</p>
+        </Excerpt>
       </ContentLink>
-    </ImageLink>
+      <Meta>
+        <Author>
+          <StaticAvatar to={post.frontmatter.author.fields.slug}>
+            <div className="tooltip">{post.frontmatter.author.id}</div>
+            <img
+              className={AuthorProfileWrapper}
+              src={post.frontmatter.author.avatar.childImageSharp.resolutions.src}
+            />
+          </StaticAvatar>
+        </Author>
+        <ReadingTime>{post.timeToRead} min read</ReadingTime>
+      </Meta>
+    </Content>
   </PostCardWrapper>
 )
 

@@ -16,6 +16,9 @@ module.exports = {
       email: 'resir014@gmail.com'
     }
   },
+  mapping: {
+    'MarkdownRemark.frontmatter.author': 'AuthorsJson'
+  },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
@@ -24,6 +27,8 @@ module.exports = {
         path: `${__dirname}/content`
       }
     },
+    'gatsby-transformer-sharp',
+    'gatsby-transformer-json',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -48,7 +53,6 @@ module.exports = {
         ]
       }
     },
-    'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
@@ -59,7 +63,6 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-next',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet'
   ]
 }

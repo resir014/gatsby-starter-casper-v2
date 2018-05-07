@@ -35,9 +35,7 @@ const IndexPage: React.SFC<IndexPageProps> = ({ data }) => (
     <LayoutMain>
       <PostFeed>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <PostCard key={node.fields.slug} post={node}>
-            {node.frontmatter.title}
-          </PostCard>
+          <PostCard key={node.fields.slug} post={node} />
         ))}
       </PostFeed>
     </LayoutMain>
@@ -61,6 +59,8 @@ export const query = graphql`
       edges {
         node {
           html
+          excerpt
+          timeToRead
           fields {
             date
             dateFormatted: date(formatString: "MMMM DD, YYYY")
@@ -76,6 +76,21 @@ export const query = graphql`
                 resolutions(width: 1400, height: 935) {
                   ...GatsbyImageSharpResolutions
                 }
+              }
+            }
+            author {
+              id
+              bio
+              twitter
+              avatar {
+                childImageSharp {
+                  resolutions(width: 400, height: 400) {
+                    ...GatsbyImageSharpResolutions
+                  }
+                }
+              }
+              fields {
+                slug
               }
             }
           }

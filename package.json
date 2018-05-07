@@ -49,6 +49,7 @@
     "gatsby-transformer-remark": "^1.7.40",
     "gatsby-transformer-sharp": "^1.6.24",
     "normalize.css": "^7.0.0",
+    "parse-filepath": "^1.0.2",
     "polished": "^1.9.2",
     "postcss-color-function": "^4.0.1",
     "postcss-flexbugs-fixes": "^3.3.1",
